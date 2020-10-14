@@ -4,25 +4,11 @@ import { FiArrowRight, FiPlus } from 'react-icons/fi'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import Leaflet from 'leaflet'
 
-import api from '../services/api'
+import api from 'services/api'
+import { IOrphanage } from 'models/orphanage'
 
 import 'styles/pages/orphanages-map.css'
 import mapMarking from 'assets/images/map-marker.svg'
-
-interface OrphanageProps {
-  id: number
-  name: string
-  latitude: number
-  longitude: number
-  about: string
-  instructions: string
-  opening_hours: string
-  open_on_weekends: boolean
-  images: {
-    id: number
-    path: string
-  }
-}
 
 const mapIcon = Leaflet.icon({
   iconUrl: mapMarking,
@@ -34,12 +20,13 @@ const mapIcon = Leaflet.icon({
 const OrphanagesMap: React.FC = () => {
   const tileURL = `https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`
 
-  const [orphanages, setOrphanages] = useState<OrphanageProps[]>([])
+  const [orphanages, setOrphanages] = useState<IOrphanage[]>([])
 
   useEffect(() => {
-    api.get<OrphanageProps[]>('/orphanages').then(({ data }) => {
-      setOrphanages(data)
-    })
+    api.get<IOrphanage[]>('/orphanages')
+      .then(({ data }) => {
+        setOrphanages(data)
+      })
   }, [])
 
   return (
@@ -79,7 +66,7 @@ const OrphanagesMap: React.FC = () => {
             >
               {orphanage.name}
 
-              <Link to="/orphanages/1">
+              <Link to={`/orphanages/${orphanage.id}`}>
                 <FiArrowRight size={20} color="#FFF" />
               </Link>
             </Popup>
