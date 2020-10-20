@@ -25,6 +25,9 @@
 Happy is an app that connects people to institutional homes (orphanages) to make the day of many children happier 💜<br>
 The project is part of Next Level Week #03 (NLW), a bootcamp by [Rocketseat](https://rocketseat.com.br/).
 
+You can view the site in:<br>
+[https://xenodochial-bhaskara-1e7409.netlify.app/](https://xenodochial-bhaskara-1e7409.netlify.app/)
+
 The other parts of the project are available in:
 - [happy-server](https://github.com/jeffersongouveia/happy-server)
 - [happy-mobile](https://github.com/jeffersongouveia/happy-mobile)
